@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApplication7.Expenditure>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                Ngày
+            </th>
+            <th>
+                Số Tiền
+            </th>
+            <th>
+                Ghi chú
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tbody>
+        <tr>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.Amount
+            </td>
+            <td>
+                @item.Note
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    </tbody>
+}
+
+</table>
+
+@section Scripts{
+    <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}
